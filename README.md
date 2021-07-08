@@ -3,13 +3,14 @@
 This is a group project made for BCIT's COMP2800 Projects 2 course, where we were required to make a mobile web application.
 ScoutNinja is an online scavenger-hunt game that utilizes google maps and google streetview to allow players to create and play their own scavenger hunt games.
 
-Due to commits in the original repo containing important API keys and wanting to preserve its original integrity, I have cloned the repo without the dangerous history so that I am able to display the code.
+Due to commits in the original repo containing important API keys and wanting to preserve its original integrity, we have cloned the repo without the dangerous history so that we are able to display the code.
 
 This project was made with the following group members:
 
-- Harry He (https://github.com/cynicalmanatee)
-- Sehwan Lee (https://github.com/Saskaros)
-- Kenneth Ng (https://github.com/kennethclng)
+- [Oscar La](https://github.com/oscarlaaaa)
+- [Harry He](https://github.com/cynicalmanatee)
+- [Sehwan Lee](https://github.com/Saskaros)
+- [Kenneth Ng](https://github.com/kennethclng)
 
 ## Table of Contents
 
