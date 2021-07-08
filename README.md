@@ -22,15 +22,15 @@ This project was made with the following group members:
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
-### Motivation
+## Motivation
 
 Given that our projects course theme was about maintaining friendships, we decided that a game would be the most enjoyable and entertaining way of doing so. As such, we took some inspiration from GeoGuesser and created a scavenger game with a different concept: rather than having to look for where you are on the map, you have to find specific pre-set locations using hints and blues instead. Exciting!!
 
-### Current State
+## Current State
 
 The app currently only runs properly on mobile view, with a few minor bugs here and there that we are gradually taking care of.
 
-### Tech/Frameworks
+## Tech/Frameworks
 
 - **React.js** for a dynamic front-end using hooks and router
   - React-Router-Dom for handling page routing
@@ -43,7 +43,7 @@ The app currently only runs properly on mobile view, with a few minor bugs here 
 - **Heroku** to host our web application
 - **Google Firebase** to provide authentication functionality
 
-### Features
+## Features
 
 - Dynamic authentication using Google Firebase for a unique user experience.
 - Persistent data storage using PostgreSQL to handle all user, game, friend, and scoring information.
@@ -53,11 +53,11 @@ The app currently only runs properly on mobile view, with a few minor bugs here 
 - Bare-bones friends list (WIP).
 - Enjoyable gameplay loop centered around creating unique challenges and sending them to your friends to complete, promoting friendly interaction and competition.
 
-### How to Play
+## How to Play
 
 Simply visit https://scoutninja.herokuapp.com/ to try out the application.
 
-### Credits
+## Credits
 
 - Our mentor instructor [Seyed](https://github.com/seyedbcit) for all his guidance and help throughout the process.
 - Our class instructors [Carly](https://github.com/orrbcit) and [Chris](https://github.com/chris-thompson) for answering any questions we had.
