@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+/* font-family: 'Permanent Marker', cursive; */
+
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+/* font-family: 'Indie Flower', cursive; */
+.player-heading {
+	display: grid;
+  grid-template: 'pic nickname' 2fr 'pic uid' 1fr 'pic location' 1fr 'pic rank' 1fr / 40% 60%;
+	height: 20vh;
+	font-family: "Indie Flower", cursive;
+  background-color: #F7F7FF;
+  border: 2px solid #495867;
+  color: #495867;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.player-profile-picture {
+  grid-area: pic;
+	width: auto;
+	height: 70%;
+	margin: auto;
+  border-radius: 50%;
+}
+
+.player-nickname {
+  grid-area: nickname;
+	margin-top: auto;
+	margin-bottom: auto;
+	font-size: auto;
+	font-family: "Permanent Marker", cursive;
+}
+
+.player-uid {
+  grid-area: uid;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+.player-location {
+  grid-area: location;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+.player-rank {
+  grid-area: rank;
+	margin-top: auto;
+	margin-bottom: auto;
+}

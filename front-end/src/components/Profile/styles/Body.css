@@ -1,0 +1,18 @@
+#notSelect {
+	background-color: #f7f7ff;
+	color: #495867;
+	width: 45vw;
+	font-size: 20pt;
+}
+
+#select {
+	background-color: #fe5f55;
+	color: #ffffff;
+	width: 50vw;
+	font-size: 20pt;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+	background-color: #fe5f55;
+}

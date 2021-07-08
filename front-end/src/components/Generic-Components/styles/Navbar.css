@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+
+footer {
+  position: fixed;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width: 100vw;
+  height: auto;
+  background-color: white;
+}
+
+.navbutt {
+  font-size: 0.7rem;
+  text-align: center;
+  color: #787879;
+  height: 11vh;
+}
+
+.navbutt img {
+  display: block;
+  width: 50%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1vh;
+  opacity: 0.6;
+  filter: invert(47%) sepia(37%) saturate(449%) hue-rotate(175deg)
+    brightness(86%) contrast(90%);
+}
+
+.navbuttclick {
+  font-size: 0.7rem;
+  text-align: center;
+  background-color: #577399;
+  color: white;
+  height: 11vh;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.navbuttclick img {
+  display: block;
+  width: 50%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 1vh;
+  opacity: 0.6;
+  filter: invert(100%);
+}
+
+#profile-icon {
+  grid-column-start: 1;
+}
+
+#friends-icon {
+  grid-column-start: 2;
+}
+
+#home-icon {
+  grid-column-start: 3;
+}
+
+#leaderboard-icon {
+  grid-column-start: 4;
+}
+
+#settings-icon {
+  grid-column-start: 5;
+}
+
+a:link {
+  text-decoration: none;
+  font-family: "Permanent Marker", cursive;
+}

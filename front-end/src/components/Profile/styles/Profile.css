@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+/* font-family: 'Permanent Marker', cursive; */
+
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+/* font-family: 'Indie Flower', cursive; */
+
+#profile-page {
+	font-family: "Indie Flower", cursive;
+  margin: 0;
+}
+
+#edit-save, #submit {
+	margin: auto;
+	width: 100px;
+  height: 50px;
+}
+
+#profile-body-tabs {
+	display: grid;
+	grid-template-columns: auto auto;
+}
+
+#body img {
+	width: 50%;
+}

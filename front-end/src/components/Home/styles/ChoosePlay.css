@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+/* font-family: 'Permanent Marker', cursive; */
+
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+/* font-family: 'Indie Flower', cursive; */
+
+#tutorial-box,
+#play-game-tutorial,
+#create-game-tutorial {
+  display: grid;
+  font-family: "Permanent Marker", cursive;
+  grid-template-rows: auto auto 25vh 25vh;
+}
+#tutorial-title {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 3vh;
+}
+#tutorial-title-sub {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 3vh;
+}
+
+#tutorial-logo {
+  display: block;
+  padding-top: 5vh;
+  width: 90vw;
+  margin: auto;
+}
+
+.tutorial-button {
+  width: 80vw;
+  height: 15vh;
+  background-color: #577399;
+  border: 5px solid #bdd5ea;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  display: grid;
+  border-radius: 10%;
+  color: white;
+}
+
+.tutorial-button:active,
+.tutorial-button:hover {
+  width: 75vw;
+  height: 13vh;
+  background-color: #fe5f55;
+}
+
+.tutorial-button span {
+  font-size: 2.5rem;
+  text-align: center;
+  margin: auto;
+}

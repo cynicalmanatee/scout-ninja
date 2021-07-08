@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+/* font-family: 'Permanent Marker', cursive; */
+
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+/* font-family: 'Indie Flower', cursive; */
+
+#view-main-box {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  width: 100%;
+  font-family: "Permanent Marker", cursive;
+}
+#view-map-info span {
+  font-size: 1.5rem;
+  color: #fe5f55;
+}
+#view-map-info label {
+  font-size: 1.5rem;
+  color: #fe5f55;
+}
+#view-map-info select {
+  height: 5vh;
+}
+
+#play-game-hint-form {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 2fr;
+}
+#play-game-hint-form span {
+  font-size: 1.5rem;
+}
+#view-map-box {
+  grid-row-start: 1;
+  grid-column: 1;
+  z-index: 1;
+  width: 100%;
+  height: 70vh;
+}
+#view-map-info {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  z-index: 3;
+  display: grid;
+  height: 67vh;
+  transform: translateY(6vh);
+  background: rgba(0, 0, 0, 0.6);
+  grid-template-rows: 6vh 6vh 6vh 10vh 15vh 6vh 6vh;
+  grid-template-columns: 1fr;
+  padding-top: 10vh;
+}
+#check-location {
+  grid-row: 1;
+}
+#submit-answer {
+  grid-row: 6;
+}
+
+#play-game-current-hint {
+  display: block;
+  grid-row: 3;
+  grid-column: 1 / span 2;
+  margin: auto;
+}
+#view-timer {
+  display: block;
+  width: auto;
+  grid-row: 4;
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
+}
+#view-status {
+  grid-row: 5;
+  margin: auto;
+}
+#view-finish-game {
+  grid-row: 7;
+  width: 100%;
+}
+#view-finishGame {
+  margin: auto;
+}
+
+#view-map-info button {
+  background-color: #577399;
+  color: #fe5f55;
+  text-shadow: 1px 1px black;
+  font-size: 3vh;
+  height: 5vh;
+  margin: auto;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.streetview-button {
+  background-color: #577399;
+  color: #fe5f55;
+  width: 47vw;
+  font-family: "Permanent Marker", cursive;
+  text-shadow: 1px 1px black;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  height: 6vh;
+  font-size: 5vh;
+}
+
+.streetview-button span {
+  display: block;
+  margin: auto;
+}
+
+#play-game-current-clue {
+  color: #fe5f55;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px black;
+  transform: translateY(3vh);
+}
+
+#play-game-complete {
+  display: grid;
+  grid-template-rows: auto auto auto auto auto auto;
+  font-family: "Permanent Marker", cursive;
+  padding-top: 10vh;
+}
+
+#play-game-complete-title {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #fe5f55;
+  text-shadow: 1px 1px black;
+}
+
+#play-game-complete-id {
+  font-size: 1.5rem;
+  padding-top: 2vh;
+}
+#play-game-complete-time {
+  font-size: 1.2rem;
+  padding-top: 2vh;
+}
+#play-game-complete-score {
+  font-size: 1.5rem;
+  padding-top: 2vh;
+}
+#play-game-complete-share {
+  padding-top: 20vh;
+  font-size: 1.5rem;
+}
+#play-game-complete-share button {
+  background-color: black;
+  color: red;
+}
+#play-game-complete-facebook {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+#play-game-complete-twitter {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.social-icon {
+  height: 70%;
+  display: inline-block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.view-confirm-buttons {
+  width: 47vw;
+}

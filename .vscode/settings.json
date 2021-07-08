@@ -1,0 +1,5 @@
+{
+    "git.ignoreLimitWarning": true,
+    "html.hover.documentation": false,
+    "html.hover.references": false,
+}

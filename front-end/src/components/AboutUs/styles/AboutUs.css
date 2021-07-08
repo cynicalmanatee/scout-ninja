@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+/* font-family: 'Permanent Marker', cursive; */
+
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+/* font-family: 'Indie Flower', cursive; */
+
+#about-us {
+	margin-left: 3%;
+	margin-right: 3%;
+}
+
+#app-desc {
+	font-size: 1.3rem;
+	width: auto;
+	font-family: 'Indie Flower', cursive;
+	
+}
+
+#about-us h2 {
+	font-family: "Permanent Marker", cursive;
+	font-size: 3rem;
+	text-align: center;
+}
+
+.developer {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	grid-template-rows: auto auto auto;
+}
+
+.developer img {
+	display: block;
+	margin: auto;
+	width: 100%;
+	grid-column: 1;
+	grid-row: 1 / span 2;
+}
+
+.dev-description {
+	grid-column: 1 / span 2;
+	grid-row: 3;
+	text-align: justify;
+	padding: 1rem;
+	font-size: 1.0rem;
+	font-family: "Indie Flower", cursive;
+}
+
+.developer span {
+	display: block;
+	margin: auto;
+	font-family: "Permanent Marker", cursive;
+}
+
+.dev-name {
+	font-size: 2rem;
+	text-decoration: underline;
+}
+
+.dev-role {
+	font-size: 1.2rem;
+}

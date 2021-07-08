@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+/* font-family: 'Permanent Marker', cursive; */
+
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+/* font-family: 'Indie Flower', cursive; */
+
+.friend-stub {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  text-align: center;
+  color: white;
+}
+
+.stub-name {
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.5rem;
+}
+
+.stub-id {
+  font-family: "Indie Flower", cursive;
+}
+
+.stub-location {
+  font-family: "Indie Flower", cursive;
+}
+
+.stub-rank {
+  font-family: "Indie Flower", cursive;
+}
+
+.friendlist-form-button {
+  background-color: #bdd5ea;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: #fe5f55;
+  text-shadow: 1px 1px black;
+}
+.friendlist-body {
+  font-family: "Permanent Marker", cursive;
+}

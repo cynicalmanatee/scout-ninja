@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html style="overflow: hidden;" jstcache="0">
+  <head>
+    <style>
+      .gm-compass-turn {
+        cursor: pointer;
+        overflow: hidden;
+        width: 14px;
+        height: 48px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: Transparent;
+        border: none;
+        outline: none;
+        padding: 0;
+        border-width: 0;
+      }
+      .gm-compass-turn-opposite {
+        -ms-transform: scaleX(-1);
+        -ms-transform-origin: 24px 0;
+        -moz-transform: scaleX(-1);
+        -moz-transform-origin: 24px 0;
+        -webkit-transform: scaleX(-1);
+        -webkit-transform-origin: 24px 0;
+        transform: scaleX(-1);
+        transform-origin: 24px 0;
+      }
+      .gm-compass:hover .gm-compass-tooltip-text,
+      .gm-compass:hover .gm-compass-arrow-right {
+        opacity: 1;
+        -webkit-transition-delay: 1.5s;
+        -moz-transition-delay: 1.5s;
+        transition-delay: 1.5s;
+      }
+      .gm-compass-tooltip-text {
+        opacity: 0;
+        background-color: #222;
+        width: 112px;
+        height: 23px;
+        line-height: 23px;
+        right: 58px;
+        top: 7px;
+        position: absolute;
+        border: 1px solid #ccc;
+        text-align: center;
+        color: #ccc;
+        font-family: Roboto, Arial;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      .gm-compass-arrow-right {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        top: 16px;
+        position: absolute;
+      }
+      .gm-compass-arrow-right-outer {
+        right: 52px;
+        border-left: 7px solid #ccc;
+      }
+      .gm-compass-arrow-right-inner {
+        right: 53px;
+        border-left: 7px solid #222;
+      }
+    </style>
+    <style>
+      .gm-style .gm-compass-icon {
+        background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/sv9.png);
+        background-size: 164px 175px;
+      }
+      .gm-style.gm-china .gm-compass-icon {
+        background-image: url(http://maps.gstatic.cn/mapfiles/api-3/images/sv9.png);
+      }
+      @media (-webkit-min-device-pixel-ratio: 1.2),
+        (min-resolution: 1.2dppx),
+        (min-resolution: 116dpi) {
+        .gm-style .gm-compass-icon {
+          background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/sv9_hdpi.png);
+        }
+        .gm-style.gm-china .gm-compass-icon {
+          background-image: url(http://maps.gstatic.cn/mapfiles/api-3/images/sv9_hdpi.png);
+        }
+      }
+      .gm-compass-background {
+        height: 48px;
+        width: 48px;
+        overflow: hidden;
+        position: absolute;
+      }
+      .gm-compass {
+        position: relative;
+        width: 48px;
+        height: 48px;
+      }
+      .gm-compass-needle {
+        cursor: pointer;
+        overflow: hidden;
+        width: 20px;
+        height: 48px;
+        position: absolute;
+        top: 0;
+        left: 14px;
+        background-color: Transparent;
+        border: none;
+        outline: none;
+        padding: 0;
+        border-width: 0;
+      }
+    </style>
+    <style>
+      .gm-iv-container {
+        width: 27px;
+        margin-top: 10px;
+        border-right: 1px solid #666;
+        background-color: #222;
+        opacity: 0.8;
+        font-family: Roboto, Arial;
+      }
+      .gm-iv-small-container {
+        height: 56px;
+      }
+      .gm-iv-large-container {
+        height: 72px;
+        padding-top: 14px;
+      }
+      .gm-iv-close {
+        width: 27px;
+        height: 27px;
+        margin-top: 13px;
+        outline-color: #000;
+        display: inline-block;
+      }
+      .gm-iv-back {
+        display: inline-block;
+        height: 15px;
+        width: 15px;
+        padding: 6px;
+      }
+      .gm-iv-back-icon {
+        cursor: pointer;
+        overflow: hidden;
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        background-position: -3px -70px;
+      }
+      .gm-iv-back-icon:hover {
+        background-position: -40px -70px;
+      }
+      .gm-iv-back-icon-background {
+        background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/sv9.png);
+        background-size: 164px 175px;
+      }
+      .gm-iv-back-icon-rtl {
+        cursor: pointer;
+        overflow: hidden;
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        background-position: 28px -70px;
+      }
+      .gm-iv-back-icon-rtl:hover {
+        background-position: 65px -70px;
+      }
+      @media (-webkit-min-device-pixel-ratio: 1.2),
+        (min-resolution: 1.2dppx),
+        (min-resolution: 116dpi) {
+        .gm-iv-back-icon-background {
+          background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/sv9_hdpi.png);
+        }
+      }
+    </style>
+    <style>
+      .gm-iv-address {
+        background-color: #222;
+        opacity: 0.8;
+        font-family: Roboto, Arial;
+        outline-color: #000;
+        border-bottom-right-radius: 2px;
+        border-top-right-radius: 2px;
+        display: inline-block;
+        padding: 6px 8px;
+        margin-top: 10px;
+        height: 56px;
+        box-sizing: border-box;
+      }
+      .gm-iv-marker-icon {
+        overflow: hidden;
+        width: 13px;
+        height: 21px;
+        position: absolute;
+        background-position: -17px -50px;
+      }
+      .gm-iv-marker-icon:hover {
+        background-position: -1px -50px;
+      }
+      .gm-iv-timeline-icon {
+        background-position: -37px -50px;
+        overflow: hidden;
+        width: 26px;
+        height: 15px;
+        position: absolute;
+      }
+      .gm-iv-timeline-wrapper:hover .gm-iv-timeline-icon {
+        background-position: -65px -50px;
+      }
+    </style>
+    <style>
+      .gm-iv-address-large {
+        height: 86px;
+      }
+      .gm-iv-address-description {
+        display: inline-block;
+        min-width: 137px;
+        max-width: 340px;
+        vertical-align: top;
+        position: relative;
+        padding-right: 30px;
+        box-sizing: border-box;
+      }
+      .gm-iv-short-address-description {
+        color: #fff;
+        font-weight: bold;
+        font-size: 12px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding-bottom: 2px;
+      }
+      .gm-iv-long-address-description {
+        color: #ccc;
+        font-weight: normal;
+        font-size: 11px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        min-width: 70px;
+      }
+      .gm-iv-vertical-separator {
+        display: inline-block;
+        height: 56px;
+        position: absolute;
+        right: 28px;
+        top: 10px;
+        width: 1px;
+        background: linear-gradient(top, #404040, #666, #404040);
+      }
+      .gm-iv-marker {
+        display: inline-block;
+        height: 25px;
+        width: 13px;
+        right: 8px;
+        position: absolute;
+        top: 28px;
+      }
+      .gm-iv-marker-icon-background {
+        background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/sv9.png);
+        background-size: 164px 175px;
+      }
+      .gm-iv-horizontal-separator {
+        height: 1px;
+        margin-bottom: 6px;
+        margin-left: -8px;
+        margin-right: -8px;
+        background: linear-gradient(left, #404040, #666, #404040);
+      }
+      .gm-iv-address-link {
+        position: absolute;
+        top: 48px;
+      }
+      .gm-iv-address-custom p {
+        color: #777;
+        text-decoration: none;
+        font-size: 11px;
+      }
+      .gm-iv-address-link a {
+        color: #5c8dcc;
+        text-decoration: none;
+        font-size: 11px;
+      }
+      .gm-iv-address-link a:hover {
+        text-decoration: underline;
+      }
+      .gm-iv-profile-link {
+        color: #fff;
+        font-weight: bold;
+        font-size: 12px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .gm-iv-profile-url a > .iv-profile-link:hover {
+        text-decoration: underline;
+      }
+      .gm-iv-profile-url a {
+        text-decoration: none;
+      }
+      .gm-iv-timeline {
+        min-width: 116px;
+        max-width: 326px;
+        color: #ccc;
+        font-weight: normal;
+        font-size: 11px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin-top: 19px;
+        margin-right: -8px;
+        margin-left: -8px;
+        padding-right: 8px;
+        padding-left: 8px;
+        box-sizing: border-box;
+      }
+      .gm-iv-timeline-description {
+        display: inline-block;
+        margin-top: 2px;
+        vertical-align: top;
+      }
+      .gm-iv-timeline-description-details {
+        float: left;
+      }
+      .gm-iv-timeline-description-separator {
+        padding: 0 2px;
+        float: left;
+      }
+      .gm-iv-timeline-wrapper:hover .gm-iv-timeline-description {
+        color: white;
+      }
+      .gm-iv-timeline-icon-wrapper {
+        display: inline-block;
+        height: 15px;
+        width: 26px;
+      }
+      .gm-iv-timeline-icon-background {
+        background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/sv9.png);
+        background-size: 164px 175px;
+      }
+      @media (-webkit-min-device-pixel-ratio: 1.2),
+        (min-resolution: 1.2dppx),
+        (min-resolution: 116dpi) {
+        .gm-iv-timeline-icon-background,
+        .gm-iv-marker-icon-background {
+          background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/sv9_hdpi.png);
+        }
+      }
+    </style>
+    <style>
+      .gm-control-active > img {
+        box-sizing: content-box;
+        display: none;
+        left: 50%;
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .gm-control-active > img:nth-child(1) {
+        display: block;
+      }
+      .gm-control-active:hover > img:nth-child(1),
+      .gm-control-active:active > img:nth-child(1) {
+        display: none;
+      }
+      .gm-control-active:hover > img:nth-child(2),
+      .gm-control-active:active > img:nth-child(3) {
+        display: block;
+      }
+    </style>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="react-mapillary_files/css.css"
+    />
+    <style>
+      .gm-ui-hover-effect {
+        opacity: 0.6;
+      }
+      .gm-ui-hover-effect:hover {
+        opacity: 1;
+      }
+    </style>
+    <style>
+      .gm-style .gm-style-cc a,
+      .gm-style .gm-style-cc button,
+      .gm-style .gm-style-cc span,
+      .gm-style .gm-style-mtc div {
+        font-size: 10px;
+        box-sizing: border-box;
+      }
+    </style>
+    <style>
+      @media print {
+        .gm-style .gmnoprint,
+        .gmnoprint {
+          display: none;
+        }
+      }
+      @media screen {
+        .gm-style .gmnoscreen,
+        .gmnoscreen {
+          display: none;
+        }
+      }
+    </style>
+    <style>
+      .gm-style img {
+        max-width: none;
+      }
+      .gm-style {
+        font: 400 11px Roboto, Arial, sans-serif;
+        text-decoration: none;
+      }
+    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1, maximum-scale=1,user-scalable=no"
+    />
+    <title>react-mapillary</title>
+    <link href="react-mapillary_files/mapillary.css" rel="stylesheet" />
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="react-mapillary_files/common.js"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="react-mapillary_files/util.js"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="react-mapillary_files/geometry.js"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="react-mapillary_files/streetview.js"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="react-mapillary_files/controls.js"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="react-mapillary_files/imagery_viewer.js"
+    ></script>
+    <style>
+      .widget-scene {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+        z-index: 0;
+        background-color: black;
+      }
+      .keynav-mode .widget-scene:focus::after {
+        content: "";
+        border: 2px solid #4d90fe;
+        box-sizing: border-box;
+        height: 100%;
+        pointer-events: none;
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+      }
+      .print-mode .widget-scene:focus::after {
+        display: none;
+      }
+      .widget-scene-effects {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2;
+      }
+      .widget-scene-imagery-render {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        background-color: black;
+      }
+      .widget-scene-imagery-iframe {
+        position: absolute;
+      }
+      .widget-scene .canvas-renderer {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      .widget-scene-canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: black;
+      }
+      .widget-scene-capture-canvas {
+        position: relative;
+        z-index: 3;
+      }
+      .tile-image-3d {
+        -webkit-perspective: 1000;
+        -webkit-backface-visibility: hidden;
+        perspective: 1000;
+        backface-visibility: hidden;
+        -moz-perspective: 1000;
+        -moz-backface-visibility: hidden;
+        -o-perspective: 1000;
+        -o-backface-visibility: hidden;
+      }
+      .accelerated {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+      }
+      @media print {
+        .widget-scene {
+          background: white;
+          position: static;
+          overflow: visible;
+        }
+        .widget-scene-canvas {
+          display: block;
+          background: white;
+        }
+        .app-globe-mode .widget-scene-canvas {
+          background: black;
+        }
+        .widget-scene-imagery-render {
+          position: relative;
+          background: white;
+          z-index: 4;
+        }
+        .widget-scene-imagery-iframe {
+          position: relative;
+          left: 50% !important;
+          transform: translateX(-50%);
+          -webkit-transform: translateX(-50%);
+        }
+        .widget-scene .canvas-renderer,
+        .widget-scene .canvas-container,
+        .widget-scene canvas {
+          position: static !important;
+        }
+        .canvas-renderer + .widget-scene-canvas {
+          display: none !important;
+        }
+        .widget-scene-capture-canvas + .widget-scene-canvas,
+        .widget-scene-capture-canvas + .canvas-renderer {
+          display: none !important;
+        }
+        .widget-scene-canvas {
+          width: 100% !important;
+          height: auto !important;
+          -webkit-transform: none !important;
+          transform: none !important;
+        }
+      }
+      .print-mode .widget-scene {
+        background: white;
+        position: static;
+        overflow: visible;
+      }
+      .print-mode .widget-scene-canvas {
+        display: block;
+        background: white;
+      }
+      .print-mode .app-globe-mode .widget-scene-canvas {
+        background: black;
+      }
+      .print-mode .widget-scene-imagery-render {
+        position: relative;
+        background: white;
+        z-index: 4;
+      }
+      .print-mode .widget-scene-imagery-iframe {
+        position: relative;
+        left: 50% !important;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+      }
+      .print-mode .widget-scene .canvas-renderer,
+      .print-mode .widget-scene .canvas-container,
+      .print-mode .widget-scene canvas {
+        position: static !important;
+      }
+      .print-mode .canvas-renderer + .widget-scene-canvas {
+        display: none !important;
+      }
+      .print-mode .widget-scene-capture-canvas + .widget-scene-canvas,
+      .print-mode .widget-scene-capture-canvas + .canvas-renderer {
+        display: none !important;
+      }
+    </style>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="react-mapillary_files/marker.js"
+    ></script>
+  </head>
+  <body style="margin: 0;" jstcache="0">
+    <div id="root" style="width: 100vw; height: 100vh;" jstcache="0">
+      <div style="width: 100%; height: 100%;" jstcache="0">
+        <div
+          style="
+            height: 100%;
+            position: relative;
+            background-color: rgb(229, 227, 223);
+            overflow: hidden;
+          "
+          jstcache="0"
+        >
+          <div
+            style="
+              position: absolute;
+              z-index: 1;
+              left: 0px;
+              top: 0px;
+              height: 100%;
+              width: 100%;
+              padding: 0px;
+              border-width: 0px;
+              margin: 0px;
+            "
+            class="gm-style"
+            jstcache="0"
+          >
+            <div
+              style="
+                position: absolute;
+                z-index: 0;
+                left: 0px;
+                top: 0px;
+                height: 100%;
+                width: 100%;
+                padding: 0px;
+                border-width: 0px;
+                margin: 0px;
+                background-color: rgb(229, 227, 223);
+              "
+              tabindex="-1"
+              aria-label="Map"
+              aria-roledescription="map"
+              role="group"
+              jstcache="0"
+            >
+              <div
+                style="
+                  z-index: 1;
+                  position: absolute;
+                  top: 0px;
+                  left: 0px;
+                  width: 100%;
+                  height: 100%;
+                  touch-action: none;
+                "
+                jstcache="0"
+              >
+                <div
+                  style="
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    z-index: 100;
+                    width: 100%;
+                  "
+                ></div>
+                <div
+                  style="
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    z-index: 101;
+                    width: 100%;
+                  "
+                ></div>
+                <div
+                  style="
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    z-index: 102;
+                    width: 100%;
+                  "
+                ></div>
+                <div
+                  style="
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    z-index: 103;
+                    width: 100%;
+                  "
+                ></div>
+                <div
+                  style="
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    z-index: 104;
+                    width: 100%;
+                  "
+                ></div>
+                <div
+                  style="
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    z-index: 105;
+                    width: 100%;
+                  "
+                ></div>
+                <div
+                  style="
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    z-index: 106;
+                    width: 100%;
+                  "
+                ></div>
+                <div
+                  style="
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    z-index: 107;
+                    width: 100%;
+                  "
+                ></div>
+                <div
+                  style="
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    z-index: 2;
+                    font-family: Roboto, Arial, sans-serif;
+                  "
+                  class="gmnoprint"
+                >
+                  <svg
+                    style="
+                      position: absolute;
+                      left: 0px;
+                      top: 0px;
+                      pointer-events: none;
+                    "
+                    version="1.1"
+                    width="2114px"
+                    height="549px"
+                    viewBox="0 0 2114 549"
+                  >
+                    <path
+                      fill="black"
+                      fill-rule="evenodd"
+                      fill-opacity="0.5"
+                      stroke="none"
+                      style="pointer-events: all;"
+                      d="M 0 -100 L 40 -60 L 30 -50 L 0 -82 L -30 -50 L -40 -60"
+                      transform="translate(1057 466.2989037439648) scale(1 0.29433910073132225) rotate(-398.5321375151372) "
+                    ></path>
+                    <path
+                      fill="white"
+                      fill-rule="evenodd"
+                      fill-opacity="1"
+                      stroke="none"
+                      style="pointer-events: all;"
+                      d="M 0 -100 L 40 -60 L 30 -50 L 0 -82 L -30 -50 L -40 -60"
+                      transform="translate(1057 463.2989037439648) scale(1 0.29433910073132225) rotate(-398.5321375151372) "
+                    ></path>
+                    <path
+                      fill="white"
+                      fill-rule="evenodd"
+                      fill-opacity="0"
+                      stroke="none"
+                      style="pointer-events: all;"
+                      d="M 0 -120 L 60 -60 L 40 -30 L -40 -30 L -60 -60 L 0 -120"
+                      pano="9eejRulCq2nKnIsaiyRlJw"
+                      cursor="pointer"
+                      transform="translate(1057 463.2989037439648) scale(1 0.29433910073132225) rotate(-398.5321375151372) "
+                    ></path>
+                    <path
+                      fill="black"
+                      fill-rule="evenodd"
+                      fill-opacity="0.5"
+                      stroke="none"
+                      style="pointer-events: all;"
+                      d="M 0 -100 L 40 -60 L 30 -50 L 0 -82 L -30 -50 L -40 -60"
+                      transform="translate(1057 466.2989037439648) scale(1 0.29433910073132225) rotate(-216.39992773730518) "
+                    ></path>
+                    <path
+                      fill="white"
+                      fill-rule="evenodd"
+                      fill-opacity="1"
+                      stroke="none"
+                      style="pointer-events: all;"
+                      d="M 0 -100 L 40 -60 L 30 -50 L 0 -82 L -30 -50 L -40 -60"
+                      transform="translate(1057 463.2989037439648) scale(1 0.29433910073132225) rotate(-216.39992773730518) "
+                    ></path>
+                    <path
+                      fill="white"
+                      fill-rule="evenodd"
+                      fill-opacity="0"
+                      stroke="none"
+                      style="pointer-events: all;"
+                      d="M 0 -120 L 60 -60 L 40 -30 L -40 -30 L -60 -60 L 0 -120"
+                      pano="h2f1o5OaMVZdXxitUJqd-w"
+                      cursor="pointer"
+                      transform="translate(1057 463.2989037439648) scale(1 0.29433910073132225) rotate(-216.39992773730518) "
+                    ></path>
+                  </svg>
+                </div>
+                <div style="width: 100%; height: 100%;" jstcache="0">
+                  <div
+                    jstcache="5"
+                    aria-label="Street View"
+                    tabindex="0"
+                    jsaction="click: scene.viewport;dblclick: scene.viewport;mousedown: scene.viewport;mousemove: scene.viewport;mouseup: scene.viewport;mouseover: scene.viewport;mouseout: scene.viewport;touchstart: scene.viewport;touchmove: scene.viewport;touchend: scene.viewport;pointerdown: scene.viewport;pointermove: scene.viewport;pointerup: scene.viewport;pointercancel: scene.viewport;MSPointerDown: scene.viewport;MSPointerMove: scene.viewport;MSPointerUp: scene.viewport;MSPointerCancel: scene.viewport;contextmenu: scene.viewport;keydown: scene.viewport;keyup: scene.viewport;wheel: scene.viewport;mousewheel: scene.viewport;DOMMouseScroll: scene.viewport;"
+                    role="application"
+                    class="widget-scene"
+                    style="cursor: pointer;"
+                  >
+                    <canvas
+                      width="3730"
+                      height="968"
+                      style="width: 2114px; height: 549px;"
+                      id=""
+                      class="widget-scene-canvas"
+                      tabindex="-1"
+                    ></canvas>
+                    <div
+                      style="width: 0px; height: 0px; display: none;"
+                      id=""
+                      class="widget-scene-imagery-render"
+                    ></div>
+                    <div class="widget-scene-effects noprint"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div jstcache="0">
+              <div
+                style="
+                  z-index: 24601;
+                  position: absolute;
+                  display: none;
+                  left: 0px;
+                  top: 0px;
+                "
+                dir="ltr"
+                jstcache="0"
+              >
+                <div
+                  jstcache="5"
+                  class="gm-iv-container gm-iv-small-container"
+                  jsan="t-_EPk2VOG1I0,7.gm-iv-container,7.gm-iv-small-container"
+                >
+                  <div jsaction="closeControl.click" class="gm-iv-close">
+                    <div class="gm-iv-back">
+                      <div
+                        jstcache="2"
+                        class="gm-iv-back-icon-background gm-iv-back-icon"
+                        jsan="7.gm-iv-back-icon-background,7.gm-iv-back-icon"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                style="position: absolute; left: 0px; top: 0px;"
+                dir="ltr"
+                jstcache="0"
+              >
+                <div
+                  jstcache="33"
+                  class="gm-iv-address"
+                  jsan="t-bDow0pNywiw,7.gm-iv-address"
+                >
+                  <div class="gm-iv-address-description">
+                    <div
+                      jstcache="7"
+                      class="gm-iv-short-address-description"
+                      jsan="7.gm-iv-short-address-description"
+                    >
+                      Untitled
+                    </div>
+                    <div
+                      jstcache="8"
+                      class="gm-iv-long-address-description"
+                      jsan="7.gm-iv-long-address-description"
+                    ></div>
+                    <div
+                      jstcache="9"
+                      class="gm-iv-profile-url"
+                      style="display: none;"
+                    >
+                      <a target="_blank" jstcache="10">
+                        <div
+                          jstcache="11"
+                          class="gm-iv-profile-link"
+                          jsan="7.gm-iv-profile-link"
+                        ></div>
+                      </a>
+                    </div>
+                  </div>
+                  <div jstcache="12" class="gm-iv-address-link">
+                    <a
+                      target="_blank"
+                      jstcache="13"
+                      href="https://www.google.com/maps/@46.9172038,17.8951546,0a,41.7y,346.08h,94.94t/data=!3m4!1e1!3m2!1s8NuNe4ilxikzqRpKhdRVNg!2e0?source=apiv3"
+                      >View on Google Maps</a
+                    >
+                  </div>
+                  <div
+                    jstcache="14"
+                    class="gm-iv-address-custom"
+                    style="display: none;"
+                  >
+                    <p>Custom Imagery</p>
+                  </div>
+                  <div
+                    jstcache="15"
+                    class="gm-iv-vertical-separator"
+                    style=""
+                  ></div>
+                  <div jstcache="16" class="gm-iv-marker" style="">
+                    <a
+                      target="_blank"
+                      jstcache="17"
+                      href="https://www.google.com/maps/@46.91720379668708,17.89515461610983,13z?hl=en-CA&amp;gl=US"
+                    >
+                      <div
+                        class="gm-iv-marker-icon gm-iv-marker-icon-background"
+                      ></div>
+                    </a>
+                  </div>
+                  <div
+                    jstcache="18"
+                    class="gm-iv-timeline"
+                    style="display: none;"
+                  >
+                    <div class="gm-iv-horizontal-separator"></div>
+                    <div
+                      jstcache="19"
+                      jsaction="timeline.show"
+                      class="gm-iv-timeline-wrapper"
+                      style="display: none;"
+                    >
+                      <div
+                        jstcache="20"
+                        class="gm-iv-timeline-icon-wrapper"
+                        style="display: none;"
+                      >
+                        <div
+                          class="gm-iv-timeline-icon gm-iv-timeline-icon-background"
+                        ></div>
+                      </div>
+                      <div
+                        jstcache="21"
+                        class="gm-iv-timeline-description"
+                        style="display: none;"
+                      >
+                        <div
+                          jstcache="22"
+                          class="gm-iv-timeline-description-details"
+                          jsan="7.gm-iv-timeline-description-details"
+                        ></div>
+                        <div class="gm-iv-timeline-description-separator">
+                          -
+                        </div>
+                        <div
+                          jstcache="23"
+                          class="gm-iv-timeline-description-details"
+                          jsan="7.gm-iv-timeline-description-details"
+                        ></div>
+                      </div>
+                    </div>
+                    <div
+                      jstcache="24"
+                      class="gm-iv-timeline-description"
+                      style="display: none;"
+                    >
+                      <div
+                        jstcache="25"
+                        class="gm-iv-timeline-description-details"
+                        jsan="7.gm-iv-timeline-description-details"
+                      ></div>
+                      <div class="gm-iv-timeline-description-separator">-</div>
+                      <div
+                        jstcache="26"
+                        class="gm-iv-timeline-description-details"
+                        jsan="7.gm-iv-timeline-description-details"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style="
+                    position: absolute;
+                    left: 0px;
+                    margin-top: -29px;
+                    z-index: 1;
+                    width: 351px;
+                    height: 248px;
+                    display: none;
+                  "
+                ></div>
+              </div>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>
+              <button
+                style="
+                  background: rgb(34, 34, 34) none repeat scroll 0% 0%;
+                  border: 0px none;
+                  margin: 10px;
+                  padding: 0px;
+                  text-transform: none;
+                  appearance: none;
+                  position: absolute;
+                  cursor: pointer;
+                  user-select: none;
+                  border-radius: 2px;
+                  height: 40px;
+                  width: 40px;
+                  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+                  overflow: hidden;
+                  top: 0px;
+                  right: 0px;
+                "
+                draggable="false"
+                title="Toggle fullscreen view"
+                aria-label="Toggle fullscreen view"
+                type="button"
+                class="gm-control-active gm-fullscreen-control"
+              >
+                <img
+                  style="height: 18px; width: 18px;"
+                  src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2018%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M0%200v6h2V2h4V0H0zm16%200h-4v2h4v4h2V0h-2zm0%2016h-4v2h6v-6h-2v4zM2%2012H0v6h6v-2H2v-4z%22/%3E%3C/svg%3E"
+                  alt=""
+                /><img
+                  style="height: 18px; width: 18px;"
+                  src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2018%22%3E%3Cpath%20fill%3D%22%23B1B1B1%22%20d%3D%22M0%200v6h2V2h4V0H0zm16%200h-4v2h4v4h2V0h-2zm0%2016h-4v2h6v-6h-2v4zM2%2012H0v6h6v-2H2v-4z%22/%3E%3C/svg%3E"
+                  alt=""
+                /><img
+                  style="height: 18px; width: 18px;"
+                  src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2018%22%3E%3Cpath%20fill%3D%22%23E4E4E4%22%20d%3D%22M0%200v6h2V2h4V0H0zm16%200h-4v2h4v4h2V0h-2zm0%2016h-4v2h6v-6h-2v4zM2%2012H0v6h6v-2H2v-4z%22/%3E%3C/svg%3E"
+                  alt=""
+                />
+              </button>
+            </div>
+            <div></div>
+            <div>
+              <div
+                style="
+                  color: white;
+                  font-family: Roboto, Arial, sans-serif;
+                  background-color: black;
+                  padding: 4px;
+                  border: 2px solid white;
+                  user-select: none;
+                  display: none;
+                  position: absolute;
+                  left: 1057px;
+                  top: 275px;
+                "
+                draggable="false"
+              >
+                This image is no longer available
+              </div>
+            </div>
+            <div></div>
+            <div></div>
+            <div>
+              <div
+                style="
+                  position: absolute;
+                  background-color: rgb(34, 34, 34);
+                  border-radius: 2px;
+                  margin-right: 10px;
+                  width: 40px;
+                  height: 40px;
+                  z-index: 1;
+                  display: none;
+                  bottom: 115px;
+                  right: 0px;
+                "
+              >
+                <img
+                  style="width: 40px; height: 40px;"
+                  src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M27.42%200H12.58C10.61%200%209%201.61%209%203.58v32.83C9%2038.39%2010.61%2040%2012.58%2040h14.83c1.97%200%203.58-1.61%203.58-3.58v-32.84C31%201.61%2029.39%200%2027.42%200zM29%2032c0%20.55-.45%201-1%201H12c-.55%200-1-.45-1-1V8c0-.55.45-1%201-1h16c.55%200%201%20.45%201%201v24z%22/%3E%3C/svg%3E"
+                />
+              </div>
+              <div
+                class="gmnoprint gm-bundled-control gm-bundled-control-on-bottom"
+                style="
+                  margin: 10px;
+                  user-select: none;
+                  position: absolute;
+                  bottom: 95px;
+                  right: 40px;
+                "
+                draggable="false"
+                controlwidth="40"
+                controlheight="81"
+              >
+                <div
+                  draggable="false"
+                  style="
+                    user-select: none;
+                    font-family: Roboto, Arial, sans-serif;
+                    font-size: 11px;
+                    text-align: center;
+                    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+                    cursor: pointer;
+                    display: none;
+                    position: absolute;
+                  "
+                  controlwidth="40px"
+                ></div>
+                <div
+                  class="gmnoprint"
+                  style="position: absolute; left: 0px; top: 0px;"
+                  controlwidth="40"
+                  controlheight="81"
+                >
+                  <div
+                    draggable="false"
+                    style="
+                      user-select: none;
+                      box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+                      border-radius: 2px;
+                      cursor: pointer;
+                      background-color: rgb(34, 34, 34);
+                      width: 40px;
+                      height: 81px;
+                    "
+                  >
+                    <button
+                      style="
+                        background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
+                        display: block;
+                        border: 0px none;
+                        margin: 0px;
+                        padding: 0px;
+                        text-transform: none;
+                        appearance: none;
+                        position: relative;
+                        cursor: pointer;
+                        user-select: none;
+                        overflow: hidden;
+                        width: 40px;
+                        height: 40px;
+                        top: 0px;
+                        left: 0px;
+                      "
+                      draggable="false"
+                      title="Zoom in"
+                      aria-label="Zoom in"
+                      type="button"
+                      class="gm-control-active"
+                    >
+                      <img
+                        style="height: 18px; width: 18px;"
+                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2018%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M18%207h-7V0H7v7H0v4h7v7h4v-7h7z%22/%3E%3C/svg%3E"
+                        alt=""
+                      /><img
+                        style="height: 18px; width: 18px;"
+                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2018%22%3E%3Cpath%20fill%3D%22%23B1B1B1%22%20d%3D%22M18%207h-7V0H7v7H0v4h7v7h4v-7h7z%22/%3E%3C/svg%3E"
+                        alt=""
+                      /><img
+                        style="height: 18px; width: 18px;"
+                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2018%22%3E%3Cpath%20fill%3D%22%23E4E4E4%22%20d%3D%22M18%207h-7V0H7v7H0v4h7v7h4v-7h7z%22/%3E%3C/svg%3E"
+                        alt=""
+                      />
+                    </button>
+                    <div
+                      style="
+                        position: relative;
+                        overflow: hidden;
+                        width: 30px;
+                        height: 1px;
+                        margin: 0px 5px;
+                        background-color: rgb(26, 26, 26);
+                        top: 0px;
+                      "
+                    ></div>
+                    <button
+                      style="
+                        background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
+                        display: block;
+                        border: 0px none;
+                        margin: 0px;
+                        padding: 0px;
+                        text-transform: none;
+                        appearance: none;
+                        position: relative;
+                        cursor: pointer;
+                        user-select: none;
+                        overflow: hidden;
+                        width: 40px;
+                        height: 40px;
+                        top: 0px;
+                        left: 0px;
+                      "
+                      draggable="false"
+                      title="Zoom out"
+                      aria-label="Zoom out"
+                      type="button"
+                      class="gm-control-active"
+                    >
+                      <img
+                        style="height: 18px; width: 18px;"
+                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2018%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M0%207h18v4H0V7z%22/%3E%3C/svg%3E"
+                        alt=""
+                      /><img
+                        style="height: 18px; width: 18px;"
+                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2018%22%3E%3Cpath%20fill%3D%22%23B1B1B1%22%20d%3D%22M0%207h18v4H0V7z%22/%3E%3C/svg%3E"
+                        alt=""
+                      /><img
+                        style="height: 18px; width: 18px;"
+                        src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2018%22%3E%3Cpath%20fill%3D%22%23E4E4E4%22%20d%3D%22M0%207h18v4H0V7z%22/%3E%3C/svg%3E"
+                        alt=""
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  margin-left: 5px;
+                  margin-right: 5px;
+                  z-index: 1000000;
+                  position: absolute;
+                  left: 0px;
+                  bottom: 0px;
+                "
+              >
+                <a
+                  style="
+                    position: static;
+                    overflow: visible;
+                    float: none;
+                    display: inline;
+                  "
+                  target="_blank"
+                  rel="noopener"
+                  href="https://maps.google.com/maps/@46.9172038,17.8951546,0a,41.7y,346.08h,94.94t/data=!3m4!1e1!3m2!1s8NuNe4ilxikzqRpKhdRVNg!2e0?source=apiv3"
+                  title="Open this area in Google Maps (opens a new window)"
+                  ><div style="width: 66px; height: 26px; cursor: pointer;">
+                    <img
+                      style="
+                        position: absolute;
+                        left: 0px;
+                        top: 0px;
+                        width: 66px;
+                        height: 26px;
+                        user-select: none;
+                        border: 0px none;
+                        padding: 0px;
+                        margin: 0px;
+                      "
+                      alt=""
+                      src="react-mapillary_files/google_white5_hdpi.png"
+                      draggable="false"
+                    /></div
+                ></a>
+              </div>
+            </div>
+            <div></div>
+            <div>
+              <div
+                class="gmnoprint"
+                style="
+                  z-index: 1000001;
+                  position: absolute;
+                  right: 160px;
+                  bottom: 0px;
+                  width: 79px;
+                "
+              >
+                <div
+                  draggable="false"
+                  style="user-select: none; height: 14px; line-height: 14px;"
+                  class="gm-style-cc"
+                >
+                  <div
+                    style="
+                      opacity: 0.7;
+                      width: 100%;
+                      height: 100%;
+                      position: absolute;
+                    "
+                  >
+                    <div style="width: 1px;"></div>
+                    <div
+                      style="
+                        background-color: rgb(0, 0, 0);
+                        width: auto;
+                        height: 100%;
+                        margin-left: 1px;
+                      "
+                    ></div>
+                  </div>
+                  <div
+                    style="
+                      position: relative;
+                      padding-right: 6px;
+                      padding-left: 6px;
+                      box-sizing: border-box;
+                      font-family: Roboto, Arial, sans-serif;
+                      font-size: 10px;
+                      color: rgb(255, 255, 255);
+                      white-space: nowrap;
+                      direction: ltr;
+                      text-align: right;
+                      vertical-align: middle;
+                      display: inline-block;
+                    "
+                  >
+                    <button
+                      style="
+                        background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
+                        display: none;
+                        border: 0px none;
+                        margin: 0px;
+                        padding: 0px;
+                        text-transform: none;
+                        appearance: none;
+                        position: relative;
+                        cursor: pointer;
+                        user-select: none;
+                        color: rgb(255, 255, 255);
+                        font-family: inherit;
+                      "
+                      draggable="false"
+                      title="Map Data"
+                      aria-label="Map Data"
+                      type="button"
+                    >
+                      Map Data</button
+                    ><span>© 2021 Google</span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="gmnoprint gm-style-cc"
+                style="
+                  z-index: 1000001;
+                  user-select: none;
+                  height: 14px;
+                  line-height: 14px;
+                  position: absolute;
+                  right: 89px;
+                  bottom: 0px;
+                "
+                draggable="false"
+              >
+                <div
+                  style="
+                    opacity: 0.7;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                  "
+                >
+                  <div style="width: 1px;"></div>
+                  <div
+                    style="
+                      background-color: rgb(0, 0, 0);
+                      width: auto;
+                      height: 100%;
+                      margin-left: 1px;
+                    "
+                  ></div>
+                </div>
+                <div
+                  style="
+                    position: relative;
+                    padding-right: 6px;
+                    padding-left: 6px;
+                    box-sizing: border-box;
+                    font-family: Roboto, Arial, sans-serif;
+                    font-size: 10px;
+                    color: rgb(255, 255, 255);
+                    white-space: nowrap;
+                    direction: ltr;
+                    text-align: right;
+                    vertical-align: middle;
+                    display: inline-block;
+                  "
+                >
+                  <a
+                    style="
+                      text-decoration: none;
+                      cursor: pointer;
+                      color: rgb(255, 255, 255);
+                    "
+                    href="https://www.google.com/intl/en-CA_US/help/terms_maps.html"
+                    target="_blank"
+                    rel="noopener"
+                    >Terms of Use</a
+                  >
+                </div>
+              </div>
+              <div
+                draggable="false"
+                style="
+                  user-select: none;
+                  height: 14px;
+                  line-height: 14px;
+                  position: absolute;
+                  right: 0px;
+                  bottom: 0px;
+                "
+                class="gm-style-cc"
+              >
+                <div
+                  style="
+                    opacity: 0.7;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                  "
+                >
+                  <div style="width: 1px;"></div>
+                  <div
+                    style="
+                      background-color: rgb(0, 0, 0);
+                      width: auto;
+                      height: 100%;
+                      margin-left: 1px;
+                    "
+                  ></div>
+                </div>
+                <div
+                  style="
+                    position: relative;
+                    padding-right: 6px;
+                    padding-left: 6px;
+                    box-sizing: border-box;
+                    font-family: Roboto, Arial, sans-serif;
+                    font-size: 10px;
+                    color: rgb(255, 255, 255);
+                    white-space: nowrap;
+                    direction: ltr;
+                    text-align: right;
+                    vertical-align: middle;
+                    display: inline-block;
+                  "
+                >
+                  <a
+                    style="text-decoration: none; color: rgb(255, 255, 255);"
+                    target="_new"
+                    title="Report problems with Street View imagery to Google"
+                    dir="ltr"
+                    href="https://www.google.com/cbk?output=report&amp;cb_client=apiv3&amp;image_key=!1e2!2s8NuNe4ilxikzqRpKhdRVNg&amp;cbp=1,346.083,,0.979,-4.943&amp;hl=en-CA"
+                    >Report a problem</a
+                  >
+                </div>
+              </div>
+              <div
+                class="gmnoscreen"
+                style="position: absolute; right: 0px; bottom: 0px;"
+              >
+                <div
+                  style="
+                    font-family: Roboto, Arial, sans-serif;
+                    font-size: 11px;
+                    color: rgb(0, 0, 0);
+                    direction: ltr;
+                    text-align: right;
+                    background-color: rgb(245, 245, 245);
+                  "
+                >
+                  © 2021 Google
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                background-color: white;
+                padding: 15px 21px;
+                border: 1px solid rgb(171, 171, 171);
+                font-family: Roboto, Arial, sans-serif;
+                color: rgb(34, 34, 34);
+                box-sizing: border-box;
+                box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px;
+                z-index: 10000002;
+                display: none;
+                width: 300px;
+                height: 180px;
+                position: absolute;
+                left: 907px;
+                top: 185px;
+              "
+            >
+              <div
+                style="
+                  padding: 0px 0px 10px;
+                  font-size: 16px;
+                  box-sizing: border-box;
+                "
+              >
+                Map Data
+              </div>
+              <div style="font-size: 13px;">© 2021 Google</div>
+              <button
+                style="
+                  background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
+                  display: block;
+                  border: 0px none;
+                  margin: 0px;
+                  padding: 0px;
+                  text-transform: none;
+                  appearance: none;
+                  position: absolute;
+                  cursor: pointer;
+                  user-select: none;
+                  top: 0px;
+                  right: 0px;
+                  width: 37px;
+                  height: 37px;
+                "
+                draggable="false"
+                title="Close"
+                aria-label="Close"
+                type="button"
+                class="gm-ui-hover-effect"
+              >
+                <img
+                  src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M19%206.41L17.59%205%2012%2010.59%206.41%205%205%206.41%2010.59%2012%205%2017.59%206.41%2019%2012%2013.41%2017.59%2019%2019%2017.59%2013.41%2012z%22/%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22/%3E%3C/svg%3E"
+                  style="
+                    pointer-events: none;
+                    display: block;
+                    width: 13px;
+                    height: 13px;
+                    margin: 12px;
+                  "
+                  alt=""
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="react-mapillary_files/app.js"></script>
+
+    <script async="" src="react-mapillary_files/js"></script>
+  </body>
+</html>

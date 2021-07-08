@@ -1,0 +1,6 @@
+Naming Convention:
+    Words are all lower case:
+    Spaces are replaced with hyphens '-'
+    Create sub-folders for each primary function of the app
+        Include a style, script, asset folder for each page
+        

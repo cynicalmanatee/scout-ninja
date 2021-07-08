@@ -1,0 +1,22 @@
+{
+  "name": "comp-2800-team-bby-30-scoutninja",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oscarlaaaa/COMP-2800-Team-BBY-30-ScoutNinja.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oscarlaaaa/COMP-2800-Team-BBY-30-ScoutNinja/issues"
+  },
+  "homepage": "https://github.com/oscarlaaaa/COMP-2800-Team-BBY-30-ScoutNinja#readme",
+  "dependencies": {
+    "react-google-maps": "^9.4.5"
+  }
+}

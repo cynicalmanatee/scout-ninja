@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(255)
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  content   String?
+  published Boolean  @default(false)
+  authorId  Int
+  author    User     @relation(fields: [authorId], references: [id])
+}
+
+model Profile {
+  id     Int     @id @default(autoincrement())
+  bio    String?
+  userId Int     @unique
+  user   User    @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id      Int      @id @default(autoincrement())
+  name    String?  @db.VarChar(255)
+  email   String   @unique @db.VarChar(255)
+  posts   Post[]
+  profile Profile?
+}
+
+model clueshint {
+  game_id    Int
+  order_num  Int
+  clue       String  @db.VarChar(100)
+  hint       String? @db.VarChar(100)
+  coord_long Decimal @db.Decimal(10, 7)
+  coord_lat  Decimal @db.Decimal(10, 7)
+  game       game    @relation(fields: [game_id], references: [id])
+
+  @@id([game_id, order_num])
+}
+
+model friend {
+  primary_user_id                       String @db.VarChar(100)
+  friend_user_id                        String @db.VarChar(100)
+  player_friend_friend_user_idToplayer  player @relation("friend_friend_user_idToplayer", fields: [friend_user_id], references: [email])
+  player_friend_primary_user_idToplayer player @relation("friend_primary_user_idToplayer", fields: [primary_user_id], references: [email])
+
+  @@id([primary_user_id, friend_user_id])
+}
+
+model game {
+  id               Int         @id @default(autoincrement())
+  game_name        String?     @db.VarChar(30)
+  player_id        String?     @db.VarChar(100)
+  start_coord_long Decimal     @db.Decimal(10, 7)
+  start_coord_lat  Decimal     @db.Decimal(10, 7)
+  boundary         Int?
+  time_limit       Int?
+  link             String      @db.VarChar(100)
+  player           player?     @relation(fields: [player_id], references: [email])
+  clueshint        clueshint[]
+}
+
+model highscore {
+  player_id String @db.VarChar(100)
+  game_id   Int
+  highscore Int?   @default(0)
+  player    player @relation(fields: [player_id], references: [email])
+
+  @@id([player_id, game_id])
+}
+
+model player {
+  email                                 String      @id @db.VarChar(100)
+  nickname                              String?     @db.VarChar(30)
+  country                               String?     @db.VarChar(50)
+  rating                                Int?        @default(1000)
+  profile_pic                           Int?        @default(1)
+  friend_friend_friend_user_idToplayer  friend[]    @relation("friend_friend_user_idToplayer")
+  friend_friend_primary_user_idToplayer friend[]    @relation("friend_primary_user_idToplayer")
+  game                                  game[]
+  highscore                             highscore[]
+}

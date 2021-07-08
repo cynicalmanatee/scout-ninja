@@ -1,0 +1,22 @@
+#startbutt {
+    width: 95%;
+    height: 200px;
+    background-color: #FE5F55;
+    color: #F7F7FF;
+    margin: auto;
+    text-align: center;
+    border-radius: 10%;
+}
+
+#starttext {
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    height: 100%;
+}
+
+#buttword {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 85pt;
+}

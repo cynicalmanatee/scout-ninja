@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+/* font-family: 'Permanent Marker', cursive; */
+
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+/* font-family: 'Indie Flower', cursive; */
+
+#user-info-heading {
+  display: grid;
+  grid-template: "pic welcome" 1fr "pic nickname" 2fr "pic uid" 1fr "pic location" 1fr "pic rank" 1fr / 40% 60%;
+  height: 24vh;
+  font-family: "Indie Flower", cursive;
+  background-color: #f7f7ff;
+  border: 2px solid #495867;
+  color: #495867;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 18px;
+}
+
+#profile-picture {
+  grid-area: pic;
+  width: auto;
+  height: 85%;
+  margin: auto;
+}
+
+#welcome {
+  grid-area: welcome;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 1.5rem;
+}
+#nickname {
+  grid-area: nickname;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: auto;
+  font-family: "Permanent Marker", cursive;
+}
+#uid {
+  grid-area: uid;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+#location {
+  grid-area: location;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+#rank {
+  grid-area: rank;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#edit {
+  height: 2rem;
+  width: 80%;
+  margin: auto;
+}
+
+#logoutButt{
+
+    margin: 20px;
+    background-color: #BDD5EA;
+    color: black;
+}

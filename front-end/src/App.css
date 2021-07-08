@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+/* font-family: 'Permanent Marker', cursive; */
+
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+/* font-family: 'Indie Flower', cursive; */
+
+#root {
+  height: auto;
+  background-color: #495867;
+  color: white;
+  min-height: 100vh;
+}
+
+#main-box {
+  margin-left: 3vw;
+  margin-right: 3vw;
+}
+
+.login-form {
+  text-align: center;
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  height: 100%;
+}
+
+/* img {
+	height: auto;
+	width: auto;
+	margin: auto;
+} */

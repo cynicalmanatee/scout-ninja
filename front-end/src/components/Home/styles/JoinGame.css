@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+/* font-family: 'Permanent Marker', cursive; */
+
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+/* font-family: 'Indie Flower', cursive; */
+
+#join-game-title {
+	height: 20vh;
+	display: grid;
+}
+#join-game-title span {
+	text-align: center;
+	margin: auto;
+	font-size: 3rem;
+	font-family: "Permanent Marker", cursive;
+	color: #ff5f55;
+	text-shadow: 1px 1px black;
+}
+#join-game-search {
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+#join-game-information {
+	display: grid;
+	grid-template-rows: auto auto auto auto auto;
+	grid-template-columns: 1fr 1.5fr;
+	font-family: "Permanent Marker", cursive;
+	padding-top: 5vh;
+	font-size: 5vw;
+}
+.join-game-left-cat {
+	border-right: 3px solid #ffffff;
+}
+.join-game-right-cat {
+	padding-left: 10px;
+}
+
+#join-game-search label {
+	font-family: "Permanent Marker", cursive;
+	color: #ff5f55;
+	text-shadow: 1px 1px black;
+}
+.join-game-button {
+	font-family: "Permanent Marker", cursive;
+	background: #bdd5ea;
+	color: #ff5f55;
+	text-shadow: 1px 1px black;
+}
+#join-game-start {
+	width: 50%;
+	height: auto;
+	font-size: 2rem;
+	border-radius: 10px;
+}
